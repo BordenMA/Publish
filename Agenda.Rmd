@@ -1,0 +1,15 @@
+---
+title: "Index"
+author: "Borden"
+date: "April 6, 2018"
+output: html_document
+---
+
+Agenda: 
+1. Reviewed Github and file structure
+2. Going through a series of R demos (vignettes)
+  * Diagrammaer: draw your own workflows
+  * Data simulation: draw your own workflows
+    * graph the results
+  * Making a map of the United States
+  * Grab Andrew's Data set
