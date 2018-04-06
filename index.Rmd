@@ -3,6 +3,8 @@ title: "Index"
 author: "Borden"
 date: "April 6, 2018"
 output: html_document
+editor_options: 
+  chunk_output_type: console
 ---
 
 Agenda: 
@@ -34,6 +36,10 @@ packages <- c("tidyr", "maps", "mapdata", "DiagrammeR", "ggplot2","dplyr","data.
 ipak(packages)
 ```
 
+```{r}
+install.packages("DiagrammeR")
+library(DiagrammeR)
+```
 
 
 
@@ -44,5 +50,12 @@ mermaid("
 graph TD
 A[Make dataset] --> B[Run statistics]
         ")
+```
+```{r}
+mermaid("
+        A[Make dataset sampling the same distr] --> B[Run statistics]
+C[Make dataset sampling diff distr] --> B
+B --> [Something]
+                ")
 ```
 
