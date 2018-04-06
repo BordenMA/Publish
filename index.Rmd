@@ -53,9 +53,68 @@ A[Make dataset] --> B[Run statistics]
 ```
 ```{r}
 mermaid("
+graph TD
         A[Make dataset sampling the same distr] --> B[Run statistics]
 C[Make dataset sampling diff distr] --> B
-B --> [Something]
+B --> D[Finish]
                 ")
 ```
+```{r}
+Treatment<-c(rep("Control",50),rep("Intervention",50));Treatment
+
+#generate a set of normally distributed values
+rand.num1<-rnorm(n=1000,mean=50,sd=10)
+
+Measurements<-sample(rand.num1,length(Treatment))
+
+dat<-data.frame(Treatment,Measurements)
+glimpse(dat)
+
+head(dat)
+tail(dat)
+
+#lets query the data in diff ways
+dat%>%
+  group_by(Treatment)%>%
+  summarise(sample_size=length(Measurements))
+  
+
+mod1<-aov(Measurements~Treatment, data = dat)
+summary(mod1)
+
+rand.num2<-(rnorm(1000,mean=100,sd=10))
+head(rand.num2)
+head(dat)
+
+dat$Measurements2<-c(sample(rand.num1,50),sample(rand.num2,50))
+
+head(dat)
+glimpse(dat)
+
+#lets construct anova model
+mod2<-aov(Measurements2~Treatment,data=dat)
+summary(mod2)
+
+#lets plot the distributions
+ggplot(dat,aes(x=Measurements,fill=Treatment))+geom_histogram(position="identity",alpha=.2)
+
+ggplot(dat,aes(x=Measurements,fill=Treatment))+geom_density(position="identity",alpha=.2)
+
+ggplot(dat,aes(x=Measurements2,fill=Treatment))+geom_density(position="identity",alpha=.2)
+
+fwrite(dat,"2018-04-06_data.csv") #write out the dataset into a csv file in the folder.
+```
+### Making maps
+
+```{r}
+map()
+map("usa")
+map()
+points(x=80,y=5,cex=4,pch=20,col="red")
+
+
+
+```
+
+
 
