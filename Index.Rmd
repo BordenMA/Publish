@@ -13,3 +13,36 @@ Agenda:
     * graph the results
   * Making a map of the United States
   * Grab Andrew's Data set
+
+```{r loading libraries}
+install.packages("ggplot2")
+library(ggplot2)
+install.packages("dplyr")
+library(dplyr)
+```
+
+```{r}
+ipak <- function(pkg){
+  new.pkg <- pkg[!(pkg %in% installed.packages()[, "Package"])]
+  if (length(new.pkg))
+    install.packages(new.pkg, dependencies = TRUE)
+  sapply(pkg, require, character.only = TRUE)
+}
+
+# usage
+packages <- c("tidyr", "maps", "mapdata", "DiagrammeR", "ggplot2","dplyr","data.table")
+ipak(packages)
+```
+
+
+
+
+
+
+```{r Diagrammer demo}
+mermaid("
+graph TD
+A[Make dataset] --> B[Run statistics]
+        ")
+```
+
